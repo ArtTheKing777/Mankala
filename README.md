@@ -1,0 +1,2 @@
+# Mankala
+make game
