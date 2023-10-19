@@ -38,7 +38,7 @@ public class Board
     /// <param name="p">the player where you want to pits from</param>
     public int[] GetPitsOfPlayer(Player p)
     {
-        int[] pitsOfPlayer = new int[(numberOfPits) / 2];//assume: that both player have half
+        int[] pitsOfPlayer = new int[numberOfPits / 2];//assume: that both player have half
         int j = 0;
         bool flip = Player.P1 == p;
         
