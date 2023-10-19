@@ -22,7 +22,7 @@ public class mankala : Game
     {
         _numberOfPits = numberOfPits;
         _startingStones = startingStones;
-        board = new Board(_numberOfPits, _startingStones, new [] { _numberOfPits }, new [] { 2*_numberOfPits });
+        board = new Board(_numberOfPits, _startingStones, new [] { _numberOfPits }, new [] { 2*_numberOfPits+1 });
     }
     /// <summary>
     /// override of the GetMoves function, for standard version of game
