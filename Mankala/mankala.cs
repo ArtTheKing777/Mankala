@@ -58,7 +58,7 @@ public class mankala : Game
         int[] moves = GetMoves(player);
         int move = moves[DoMoveIO(moves, player)];
         int amount = board.GetPitsOfPlayer(player)[move];
-        if (player == Player.P2) move += _numberOfPits;
+        if (player == Player.P2) move += _numberOfPits+1;
         int playermankala = board.GetPlayerMankalasIndencies(player)[0];
         int notplayermankala = board.GetPlayerMankalasIndencies(notplayer)[0];
         int i;
@@ -76,13 +76,13 @@ public class mankala : Game
                 int mankalap2 = board.GetPlayerMankalasIndencies(notplayer)[0];
                 if ((i + move != mankalap1) && (i + move != mankalap2))
                 {
-                    if ((player == Player.P1 && ((move + i) % _numberOfPits + 2) < playermankala) ||
-                        (player == Player.P2 && ((move + i) % _numberOfPits + 2) > notplayermankala))
+                    if ((player == Player.P1 && move + i < playermankala) ||
+                        (player == Player.P2 && move + i > notplayermankala))
                     {
-                        if (board.GetPitsOfPlayer(player)[(move + i) % (_numberOfPits + 2)] == 0)
+                        if (board.GetPitsOfPlayer(player)[(move + i) % (_numberOfPits + 1)] == 0)
                         {
-                            board.MoveAmount(move + i, playermankala, 1);
-                            int opposite = (((_numberOfPits - (move + i)) * 2) + (move + i)) % _numberOfPits * 2 + 1;
+                            board.MoveAmount(move, playermankala, 1);
+                            int opposite = (((_numberOfPits - (move + i)) * 2) + (move + i)) % (_numberOfPits*2+2);
                             board.MoveAmount(opposite, playermankala,
                                 board.GetPitsOfPlayer(notplayer)[opposite - playermankala - 1]);
                             continue;
