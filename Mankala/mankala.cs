@@ -24,7 +24,11 @@ public class mankala : Game
         _startingStones = startingStones;
         board = new Board(_numberOfPits, _startingStones, new [] { _numberOfPits }, new [] { 2*_numberOfPits });
     }
-
+    /// <summary>
+    /// override of the GetMoves function, for standard version of game
+    /// </summary>
+    /// <param name="p">player who's moves need to be gotten</param>
+    /// <returns>int[] of indices that can be moved</returns>
     protected override int[] GetMoves(Player p)
     {
         int[] Pits = board.GetPitsOfPlayer(p);
@@ -43,19 +47,20 @@ public class mankala : Game
         return moves;
     }
 
-    //move rules
-    //move clockwise and drop one stone in each pit
+    /// <summary>
+    /// does a move
+    /// </summary>
+    /// <param name="player">player who will do a move</param>
     protected override void DoMove(Player player)
     {
         Player notplayer; 
         if (player == Player.P1) notplayer = Player.P2; else notplayer = Player.P1;
-        
         int[] moves = GetMoves(player);
         int move = moves[DoMoveIO(moves, player)];
         int amount = board.GetPitsOfPlayer(player)[move];
         if (player == Player.P2) move += _numberOfPits;
-        int playermankala = board.GetPlayerMankalas(player)[0];
-        int notplayermankala = board.GetPlayerMankalas(notplayer)[0];
+        int playermankala = board.GetPlayerMankalasIndencies(player)[0];
+        int notplayermankala = board.GetPlayerMankalasIndencies(notplayer)[0];
         int i;
         for (i = 1; i <= amount; i++)//move+i=10 player=p2
         {
@@ -87,23 +92,34 @@ public class mankala : Game
             }
             board.MoveAmount(move, move + i, 1);
         }
-        if ((move + i)%(_numberOfPits+2) != playermankala) SwitchPlayerTurn(); //if final stone drops in mankala, get another turn
+        if ((move + i - 1) != playermankala) SwitchPlayerTurn();; //if final stone drops in mankala, get another turn
+        
     }
-
+    /// <summary>
+    /// prints the board
+    /// </summary>
     protected override void printBoard()
     {
         Console.WriteLine(reverser(PrintPlayerPits(Player.P2)));
         Console.WriteLine(PrintMiddleLine());
         Console.WriteLine(PrintPlayerPits(Player.P1));
     }
-
+    /// <summary>
+    /// reverses a string
+    /// </summary>
+    /// <param name="s">string to reverse</param>
+    /// <returns>reversed string</returns>
     private string reverser(string s)
     {
         char[] c = s.ToCharArray();
         Array.Reverse(c);
         return new string(c);
     }
-
+    /// <summary>
+    /// helper function to printboard, handles the pits
+    /// </summary>
+    /// <param name="player">player who's side is printed</param>
+    /// <returns>string in a format for display</returns>
     private string PrintPlayerPits(Player player)
     {
         int[] pits = board.GetPitsOfPlayer(player);
@@ -118,7 +134,10 @@ public class mankala : Game
         _string += " ";
         return _string;
     }
-
+    /// <summary>
+    /// helper function to printboard, handles deviding line and mankalas
+    /// </summary>
+    /// <returns>formatted string with line and mankalas</returns>
     private string PrintMiddleLine()
     {
         int mankalaP2 = board.GetPlayerMankalas(Player.P2)[0];

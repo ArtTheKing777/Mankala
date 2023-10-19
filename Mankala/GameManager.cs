@@ -33,8 +33,45 @@ public class GameManager
         }
         else if (a == "custom mankala")
         {
-           //wip 
+           CustomMankalaIO();
         }
+    }
+
+    private void CustomMankalaIO()
+    {
+        Console.WriteLine("please enter the amount of pits each player will have");
+        string b = Console.ReadLine();
+        if (b == null)
+        {
+            Console.WriteLine("please enter something");
+            CustomMankalaIO();
+        }
+
+        if (Convert.ToInt32(b) == null)
+        {
+            Console.WriteLine("please enter a number");
+            CustomMankalaIO();
+        }
+        int B = Convert.ToInt32(b);
+        
+        Console.WriteLine("please enter the amount of stones each pit will have");
+        string a = Console.ReadLine();
+        if (a == null)
+        {
+            Console.WriteLine("please enter something");
+            CustomMankalaIO();
+        }
+
+        if (Convert.ToInt32(a) == null)
+        {
+            Console.WriteLine("please enter a number");
+            CustomMankalaIO();
+        }
+
+        int A = Convert.ToInt32(a);
+
+        game = new mankala(this, B, A);
+        game.StartGameIO();
     }
 
     private string SelectGameTypeIO()

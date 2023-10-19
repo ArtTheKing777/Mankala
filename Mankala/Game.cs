@@ -106,6 +106,7 @@ public abstract class Game
     /// </summary>
     protected virtual CurrentGameState DetermineWinner()
     {
+        MoveStonesToMankala();
         int p1Count = board.GetPlayerMankalas(Player.P1).Sum();
         int p2Count = board.GetPlayerMankalas(Player.P2).Sum();
         if (p1Count > p2Count) return CurrentGameState.P1Win;
@@ -113,7 +114,9 @@ public abstract class Game
         return CurrentGameState.Draw;
     }
     
-    //idk
+    /// <summary>
+    /// moves the stones of in the pits of each player to their mankalas for final count
+    /// </summary>
     private void MoveStonesToMankala()
     {
         int[] P1Stones = board.GetPitsOfPlayer(Player.P1);
@@ -150,7 +153,7 @@ public abstract class Game
 
     //default is get move based on current player and do nothing
     /// <summary>
-    /// do the deserid move based on the player input is called once every gameloop
+    /// do the desired move based on the player input is called once every gameloop
     /// </summary>
     /// /// <param name="player">the player which you are going to ask for a move</param>
     protected virtual void DoMove(Player player)
@@ -165,7 +168,7 @@ public abstract class Game
         //do the move based on the rules
     }
     
-    //this is virtual because you might want it to look diffrent based on the version your playing
+    //this is virtual because you might want it to look different based on the version your playing
     /// <summary>
     /// print the board
     /// </summary>
