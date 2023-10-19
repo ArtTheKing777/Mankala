@@ -56,7 +56,7 @@ public class mankala : Game
         Player notplayer; 
         if (player == Player.P1) notplayer = Player.P2; else notplayer = Player.P1;
         int[] moves = GetMoves(player);
-        int move = moves[DoMoveIO(moves, player)];
+        int move = DoMoveIO(moves, player);
         int amount = board.GetPitsOfPlayer(player)[move];
         if (player == Player.P2) move += _numberOfPits+1;
         int playermankala = board.GetPlayerMankalasIndencies(player)[0];
