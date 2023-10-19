@@ -5,20 +5,24 @@ public abstract class Game
     private GameManager gameManager;
     protected Board board;
     protected CurrentGameState currentGameState;
+    
+    protected int _numberOfPits;
+    protected int _startingStones;
 
     protected Game(GameManager g)
     {
         gameManager = g;
-        //deafault board can overwrite
-        board = new Board(1, 1, new[] { 1 }, new[] { 1 });
+        //default board can overwrite
+        _numberOfPits = 2;
+        _startingStones = 1;
+        board = new Board(_numberOfPits, _startingStones, new[] { 1 }, new[] { 1 });
         currentGameState = CurrentGameState.TurnP1;
     }
     //I am using a switch here because i can, but it might look better if I just use if statements
     private void CurrentGameLoop()
     {
         //change the Gamestate but allow for overwrite in move
-        currentGameState = SwitchPlayerTurn();
-        DoMove();
+        if (currentGameState == CurrentGameState.TurnP1) DoMove(Player.P1); else DoMove(Player.P2);
 
         if (!EndGame())
         {
@@ -36,14 +40,14 @@ public abstract class Game
         }
     }
 
-    private CurrentGameState SwitchPlayerTurn()
+    protected CurrentGameState SwitchPlayerTurn()
     {
         if (CurrentGameState.TurnP1 == currentGameState) return CurrentGameState.TurnP2;
         else return CurrentGameState.TurnP1;
     }
 
     //assume that moves can only be made on the pits of the player
-    private int DoMoveIO(int[] moves)
+    protected int DoMoveIO(int[] moves, Player player)
     {
         if (moves.Length == 0) return -1;//there are no moves possible so 
         
@@ -59,13 +63,13 @@ public abstract class Game
         if (a == null)
         {
             Console.WriteLine("please enter something");
-            DoMove();
+            DoMove(player);
         }
         
         if (Convert.ToInt32(a) == null) //check if int
         {
             Console.WriteLine("please enter a number");
-            DoMove();
+            DoMove(player);
         }
 
         int j = Convert.ToInt32(a);
@@ -92,6 +96,20 @@ public abstract class Game
         if (p1Count < p2Count) return CurrentGameState.P2Win;
         return CurrentGameState.Draw;
     }
+    
+    private void MoveStonesToMankala()
+    {
+        int[] P1Stones = board.GetPitsOfPlayer(Player.P1);
+        for (int i = 0; i < _numberOfPits; i++)
+        {
+            board.MoveAmount(i, _numberOfPits,P1Stones[i]);
+        }
+        int[] P2Stones = board.GetPitsOfPlayer(Player.P2);
+        for (int i = 7; i < (2*_numberOfPits)+1; i++) 
+        { 
+            board.MoveAmount(i, (_numberOfPits), P2Stones[i]);
+        }
+    }
 
     //if no moves for both player end game (default)
     protected virtual bool EndGame()
@@ -106,7 +124,7 @@ public abstract class Game
     }
 
     //default is get move based on current player and do nothing
-    protected virtual void DoMove()
+    protected virtual void DoMove(Player player)
     {
         int[] m;
         if (CurrentGameState.TurnP1 == currentGameState) m = GetMoves(Player.P1);
@@ -114,7 +132,7 @@ public abstract class Game
        
         if(m.Length == 0)return;
 
-        int chosenM = DoMoveIO(m);
+        int chosenM = DoMoveIO(m, player);
         //do the move based on the rules
     }
     

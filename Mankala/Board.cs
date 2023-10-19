@@ -8,10 +8,10 @@ public class Board
     private int numberOfPits;
     private int numberOfMankalas;
 
-    public Board(int _numberOfPits, int startingStones, int[] p1MI, int[] p2MI)
+    public Board(int _numberOfPitsPP, int startingStones, int[] p1MI, int[] p2MI)
     {
         //set vars for use later
-        numberOfPits = _numberOfPits;
+        numberOfPits = 2*_numberOfPitsPP;
         numberOfMankalas = p1MI.Length + p2MI.Length;
             
         //make the pits
@@ -34,7 +34,7 @@ public class Board
     //give the pits that the player can make a move with (assumption: pits of player are between mankala's(player pits))
     public int[] GetPitsOfPlayer(Player p)
     {
-        int[] pitsOfPlayer = new int[(numberOfPits - numberOfMankalas) / 2];//assume: that both player have half
+        int[] pitsOfPlayer = new int[(numberOfPits) / 2];//assume: that both player have half
         int j = 0;
         bool flip = Player.P1 == p;
         
@@ -71,7 +71,7 @@ public class Board
 
     public void MoveAmount(int from, int to, int amount)
     {
-        pits[from] -= amount;
-        pits[to] += amount;
+        pits[from%pits.Length] -= amount;
+        pits[to%pits.Length] += amount;
     }
 }

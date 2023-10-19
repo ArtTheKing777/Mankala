@@ -28,7 +28,7 @@ public class GameManager
         string a = SelectGameTypeIO();
         if (a == "mankala")
         {
-            game = new mankala();
+            game = new mankala(this);
             game.StartGameIO();
         }
         else if (a == "custom mankala")
