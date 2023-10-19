@@ -12,6 +12,7 @@ public class mankala : Game
         _startingStones = 4;
         board = new Board(_numberOfPits, _startingStones, new [] { _numberOfPits }, new [] { 2*_numberOfPits+1 });
     }
+    
     /// <summary>
     /// custom size mankala board
     /// </summary>
@@ -51,8 +52,8 @@ public class mankala : Game
         
         int[] moves = GetMoves(player);
         int move = moves[DoMoveIO(moves, player)];
-        if (player == Player.P2) move += _numberOfPits;
         int amount = board.GetPitsOfPlayer(player)[move];
+        if (player == Player.P2) move += _numberOfPits;
         int playermankala = board.GetPlayerMankalas(player)[0];
         int notplayermankala = board.GetPlayerMankalas(notplayer)[0];
         int i;
@@ -64,41 +65,43 @@ public class mankala : Game
                 continue;
             }
 
-            int mankalap1 = board.GetPlayerMankalas(player)[0];
-            int mankalap2 = board.GetPlayerMankalas(notplayer)[0];
-            
-            
-            if ((i + move != mankalap1) && (i + move != mankalap2))
+            if (i == amount)//if final stone drops in empty pit on your side, you also get the stones on the other side of the board
             {
-                if (i == amount && board.GetPitsOfPlayer(player)[(move + i) % (_numberOfPits + 2)] == 0) //if final stone drops in empty pit on your side, you also get the stones on the other side of the board
+                int mankalap1 = board.GetPlayerMankalasIndencies(player)[0];
+                int mankalap2 = board.GetPlayerMankalasIndencies(notplayer)[0];
+                if ((i + move != mankalap1) && (i + move != mankalap2))
                 {
                     if ((player == Player.P1 && ((move + i) % _numberOfPits + 2) < playermankala) ||
                         (player == Player.P2 && ((move + i) % _numberOfPits + 2) > notplayermankala))
                     {
-                        board.MoveAmount(move + i, playermankala, 1);
-                        int opposite = (((_numberOfPits - (move + i)) * 2) + (move + i)) % _numberOfPits * 2 + 1;
-                        board.MoveAmount(opposite, playermankala,
-                            board.GetPitsOfPlayer(notplayer)[opposite - playermankala - 1]);
+                        if (board.GetPitsOfPlayer(player)[(move + i) % (_numberOfPits + 2)] == 0)
+                        {
+                            board.MoveAmount(move + i, playermankala, 1);
+                            int opposite = (((_numberOfPits - (move + i)) * 2) + (move + i)) % _numberOfPits * 2 + 1;
+                            board.MoveAmount(opposite, playermankala,
+                                board.GetPitsOfPlayer(notplayer)[opposite - playermankala - 1]);
+                            continue;
+                        }
                     }
                 }
-                else
-                {
-                    board.MoveAmount(move, move+i, 1);
-                }
             }
-            else
-            {
-                board.MoveAmount(move, move+i, 1);
-            }
+            board.MoveAmount(move, move + i, 1);
         }
         if ((move + i)%(_numberOfPits+2) != playermankala) SwitchPlayerTurn(); //if final stone drops in mankala, get another turn
     }
 
     protected override void printBoard()
     {
-        Console.WriteLine(PrintPlayerPits(Player.P2));
+        Console.WriteLine(reverser(PrintPlayerPits(Player.P2)));
         Console.WriteLine(PrintMiddleLine());
         Console.WriteLine(PrintPlayerPits(Player.P1));
+    }
+
+    private string reverser(string s)
+    {
+        char[] c = s.ToCharArray();
+        Array.Reverse(c);
+        return new string(c);
     }
 
     private string PrintPlayerPits(Player player)

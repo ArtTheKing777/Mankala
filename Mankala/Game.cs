@@ -18,7 +18,7 @@ public abstract class Game
         board = new Board(_numberOfPits, _startingStones, new[] { 1 }, new[] { 1 });
         currentGameState = CurrentGameState.TurnP1;
     }
-    //I am using a switch here because i can, but it might look better if I just use if statements
+    
     private void CurrentGameLoop()
     {
         //change the Gamestate but allow for overwrite in move
@@ -40,23 +40,35 @@ public abstract class Game
         }
     }
 
-    protected CurrentGameState SwitchPlayerTurn()
+    /// <summary>
+    /// this switches the turn of the player to the other player
+    /// </summary>
+    protected void SwitchPlayerTurn()
     {
-        if (CurrentGameState.TurnP1 == currentGameState) return CurrentGameState.TurnP2;
-        else return CurrentGameState.TurnP1;
+        if (CurrentGameState.TurnP1 == currentGameState) currentGameState = CurrentGameState.TurnP2;
+        else currentGameState = CurrentGameState.TurnP1;
     }
 
     //assume that moves can only be made on the pits of the player
+    
+    /// <summary>
+    /// player input to select a move will give the index of that move
+    /// </summary>
+    /// <param name="moves">the moves to choose from use getmoves</param>
+    /// /// <param name="player">the player which you are going to ask for a move</param>
     protected int DoMoveIO(int[] moves, Player player)
     {
         if (moves.Length == 0) return -1;//there are no moves possible so 
         
         printBoard();
-        Console.WriteLine("Choose your move by pressing the number before:");
+
+        string pl = "";
+        if (currentGameState == CurrentGameState.TurnP1) pl = "player 1"; else pl = "player 2";
+        Console.WriteLine("Choose your move by pressing the corresponding number "+pl+":");
         
         for (int i=0; i < moves.Length; i++)
         {
-            Console.WriteLine((i+1) + "." + "move pit " + moves[i] );
+            Console.WriteLine((i+1) + "." + "move pit " + (moves[i]+1) );
         }
 
         string a = Console.ReadLine();
@@ -88,6 +100,10 @@ public abstract class Game
     }
 
     //default will be just count value of the things in the mankalas and highest number wins
+    
+    /// <summary>
+    /// this function is called after the game ends to determine the winner
+    /// </summary>
     protected virtual CurrentGameState DetermineWinner()
     {
         int p1Count = board.GetPlayerMankalas(Player.P1).Sum();
@@ -97,6 +113,7 @@ public abstract class Game
         return CurrentGameState.Draw;
     }
     
+    //idk
     private void MoveStonesToMankala()
     {
         int[] P1Stones = board.GetPitsOfPlayer(Player.P1);
@@ -112,18 +129,30 @@ public abstract class Game
     }
 
     //if no moves for both player end game (default)
+    /// <summary>
+    /// is called at the end of every loop(turn) to determine if the game has ended
+    /// </summary>
+    
     protected virtual bool EndGame()
     {
         return GetMoves(Player.P1).Length + GetMoves(Player.P2).Length == 0;
     }
 
     //if not implemented in sub classes just give empty to indicate no moves possible (default)
+    /// <summary>
+    /// get the possible moves
+    /// </summary>
+    /// /// <param name="player">the player to check</param>
     protected virtual int[] GetMoves(Player p)
     {
         return Array.Empty<int>();
     }
 
     //default is get move based on current player and do nothing
+    /// <summary>
+    /// do the deserid move based on the player input is called once every gameloop
+    /// </summary>
+    /// /// <param name="player">the player which you are going to ask for a move</param>
     protected virtual void DoMove(Player player)
     {
         int[] m;
@@ -137,6 +166,9 @@ public abstract class Game
     }
     
     //this is virtual because you might want it to look diffrent based on the version your playing
+    /// <summary>
+    /// print the board
+    /// </summary>
     protected virtual void printBoard()
     {
         Console.WriteLine("player1 pits: "+board.GetPitsOfPlayer(Player.P1));

@@ -32,6 +32,10 @@ public class Board
     }
 
     //give the pits that the player can make a move with (assumption: pits of player are between mankala's(player pits))
+    /// <summary>
+    /// Get the pits that belong to the player
+    /// </summary>
+    /// <param name="p">the player where you want to pits from</param>
     public int[] GetPitsOfPlayer(Player p)
     {
         int[] pitsOfPlayer = new int[(numberOfPits) / 2];//assume: that both player have half
@@ -55,20 +59,38 @@ public class Board
         return pitsOfPlayer;
     }
 
-    //Get the 
+    /// <summary>
+    /// get a player's mankala's
+    /// </summary>
+    /// <param name="p">the player where you want to pits from</param>
     public int[] GetPlayerMankalas(Player p)
     {
         int[] indices;
         if (Player.P1 == p) {indices = p1MankalaIndices; }
         else{indices = p2MankalaIndices;}
         
-        int[] mankals = new int[indices.Length];
+        int[] mankalas = new int[indices.Length];
        
-        for (int i = 0; i < mankals.Length; i++) { mankals[i] = pits[indices[i]]; }
+        for (int i = 0; i < mankalas.Length; i++) { mankalas[i] = pits[indices[i]]; }
 
-        return mankals;
+        return mankalas;
+    }
+    
+    /// <summary>
+    /// get a player's mankala's indincies
+    /// </summary>
+    /// <param name="p">the player where you want to pits from</param>
+    public int[] GetPlayerMankalasIndencies(Player p)
+    {
+        int[] indices;
+        if (Player.P1 == p) {indices = p1MankalaIndices; }
+        else{indices = p2MankalaIndices;}
+        return indices;
     }
 
+    /// <summary>
+    /// move an amount
+    /// </summary>
     public void MoveAmount(int from, int to, int amount)
     {
         pits[from%pits.Length] -= amount;

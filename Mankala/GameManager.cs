@@ -10,7 +10,7 @@ public class GameManager
         GameManager g = new GameManager();
         g.StartProgramIO();
     }
-
+    
     public void StartProgramIO()
     {
         Console.WriteLine("welcome to this program where you can play mankala like games.");
@@ -22,7 +22,7 @@ public class GameManager
         else if(a == "2"){}//stop program
         else {Console.WriteLine("try enter 1 or 2"); StartProgramIO();}
     }
-
+    
     private void MakeGame()
     {
         string a = SelectGameTypeIO();
