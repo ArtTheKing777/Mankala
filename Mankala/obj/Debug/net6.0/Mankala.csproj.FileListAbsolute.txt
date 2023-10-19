@@ -1,0 +1,15 @@
+C:\Users\arthu\RiderProjects\Mankala\bin\Debug\net6.0\Mankala.exe
+C:\Users\arthu\RiderProjects\Mankala\bin\Debug\net6.0\Mankala.deps.json
+C:\Users\arthu\RiderProjects\Mankala\bin\Debug\net6.0\Mankala.runtimeconfig.json
+C:\Users\arthu\RiderProjects\Mankala\bin\Debug\net6.0\Mankala.dll
+C:\Users\arthu\RiderProjects\Mankala\bin\Debug\net6.0\Mankala.pdb
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.csproj.AssemblyReference.cache
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.AssemblyInfoInputs.cache
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.AssemblyInfo.cs
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.csproj.CoreCompileInputs.cache
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.dll
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\refint\Mankala.dll
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.pdb
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\Mankala.genruntimeconfig.cache
+C:\Users\arthu\RiderProjects\Mankala\obj\Debug\net6.0\ref\Mankala.dll
