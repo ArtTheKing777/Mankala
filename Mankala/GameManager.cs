@@ -5,11 +5,11 @@ public class GameManager
     private Game game;
     private string[] gameTypes = { "mankala","custom mankala" };
     
-    static void Main(string[] args)
+    /*static void Main(string[] args)
     {
         GameManager g = new GameManager();
         g.StartProgramIO();
-    }
+    }*/
     
     public void StartProgramIO()
     {
