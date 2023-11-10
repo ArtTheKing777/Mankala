@@ -71,8 +71,42 @@ public class Controller
 
     private void DoMove(Player player)
     {
-        //Player p = _model.DoMove(player);
-        //if (player == p) _model.DoMove(player) //_model.DoMove returns the next player, so if that is the same player, they get another turn.
+        List<int> m = _model.GetMoves(player);
+        int move = DoMoveIO(player, m);
+        Player p = _model.DoMove(player, move);
+        if (player == p) _model.DoMove(player, DoMoveIO(player, _model.GetMoves(player))); //_model.DoMove returns the next player, so if that is the same player, they get another turn.
+        else _currentplayer = p; //else switch the current player;
+    }
+
+    private int DoMoveIO(Player player, List<int> moves)
+    {
+        if (moves.Count == 0) return -1; //no moves
+         _view.PrintBoard(player,_model.board);
+         string pl = "";
+         if (player == Player.P1) pl = "player 1"; else pl = "player 2";
+         _view.WriteLine("Choose your move by pressing the corresponding number "+pl+":");
+         
+         for (int i=0; i < moves.Count; i++)
+         {
+             _view.WriteLine((i+1) + "." + "move pit " + (moves[i]+1) );
+         }
+
+         string a = Console.ReadLine();
+         if (a == null)
+         {
+             _view.WriteLine("please enter something");
+             DoMove(player);
+         }
+        
+         if (Convert.ToInt32(a) == null) //check if int
+         {
+             _view.WriteLine("please enter a number");
+             DoMove(player);
+         }
+
+         int j = Convert.ToInt32(a);
+
+         return moves[j-1];
     }
 
     private string SelectGameTypeIO()
