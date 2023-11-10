@@ -17,13 +17,13 @@ public class MankalaBoard : IBoard
             }
             else if (i == pits)
             {
-                current = new HomePit(0, i, Player.P1);
+                current = new HomePit(0, i, Player.P2);
                 tempMankalaList[0].Connect(current);
             }
             else if (i > pits / 2)
             {
-                current = new Pit(amountInPits, i, Player.P1);
-                int opposite = i - ((numPits - i) * 2);
+                current = new Pit(amountInPits, i, Player.P2);
+                int opposite = numPits - i;
                 tempMankalaList[opposite].ConnectCross(current);
             } 
             else current = new Pit(amountInPits, i, Player.P1); 
@@ -32,6 +32,7 @@ public class MankalaBoard : IBoard
             tempMankalaList.Add(current);
             previous = current;
         }
+        PitList = tempMankalaList;
     }
 
     public void MoveAmount(APit from, APit to, int amount)
@@ -46,7 +47,7 @@ public class MankalaBoard : IBoard
         APit start = PitList[moveIndex];
         APit current = PitList[moveIndex];
         int count = start.Stones;
-        Player playerturnchange = p == Player.P1?Player.P1:Player.P2;
+        Player playerturnchange = p == Player.P1?Player.P2:Player.P1;
         while (count > 0)
         {
             current = current.Next;

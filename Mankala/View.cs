@@ -55,11 +55,11 @@ public class View
         int lenght = pits.Count - 1;
         for (int i = 0; i < lenght; i++)
         {
-            _string += pits[i];
+            _string += pits[i].Stones.ToString();
             _string += "|";
         }
 
-        _string += pits[lenght];
+        _string += pits[lenght].Stones;
         _string += " ";
         return _string;
     }
@@ -79,6 +79,6 @@ public class View
         {
             _string += "-";
         }
-        return mankalaP2 + _string + mankalaP1;
+        return mankalaP2.Stones + _string + mankalaP1.Stones;
     }
 }
