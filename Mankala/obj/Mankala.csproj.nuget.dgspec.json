@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\Mankala.csproj": {}
+    "C:\\Uni\\Y2\\MSO\\Mankala1\\Mankala\\Mankala\\Mankala.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\Mankala.csproj": {
+    "C:\\Uni\\Y2\\MSO\\Mankala1\\Mankala\\Mankala\\Mankala.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\Mankala.csproj",
+        "projectUniqueName": "C:\\Uni\\Y2\\MSO\\Mankala1\\Mankala\\Mankala\\Mankala.csproj",
         "projectName": "Mankala",
-        "projectPath": "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\Mankala.csproj",
-        "packagesPath": "C:\\Users\\arthu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\obj\\",
+        "projectPath": "C:\\Uni\\Y2\\MSO\\Mankala1\\Mankala\\Mankala\\Mankala.csproj",
+        "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
+        "outputPath": "C:\\Uni\\Y2\\MSO\\Mankala1\\Mankala\\Mankala\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\arthu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\julia\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.416\\RuntimeIdentifierGraph.json"
         }
       }
     }
