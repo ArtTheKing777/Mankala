@@ -2,8 +2,8 @@
 
 public class HomePit : APit
 {
-    public HomePit(int stones, int index,Player p, APit? next = null, APit? previous = null, APit? opposite = null)
-        : base(stones, index, p, next, previous, opposite)
+    public HomePit(int stones, int index,Player p)
+        : base(stones, index, p)
     {
         Type = PitType.HomePit;
     }

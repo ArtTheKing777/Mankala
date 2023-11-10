@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <Compile Remove="Program.cs" />
+      <Compile Remove="BoardCreator.cs" />
     </ItemGroup>
 
 </Project>

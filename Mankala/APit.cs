@@ -15,13 +15,19 @@ public abstract class APit
     public APit? Opposite;
     public PitType Type;
 
-    public APit(int stones, int index,Player p, APit? next = null, APit? previous = null,APit? opposite = null )
+    public APit(int stones, int index,Player p)
     {
         Stones = stones;
         Index = index;
-        Next = next;
-        Previous = previous;
-        Opposite = opposite;
+        Next = null;
+        Previous = null;
+        Opposite = null;
         Player = p;
+    }
+
+    public void Connect(APit? a)
+    {
+        Previous = a;
+        if (a != null) { a.Next = this; }
     }
 }
