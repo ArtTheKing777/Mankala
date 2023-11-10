@@ -18,7 +18,7 @@ public class Model
         {
             
         }
-        else if (mode == "othervariant")
+        else if (mode == "newvariant")
         {
             
         }
