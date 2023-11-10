@@ -13,7 +13,7 @@ public class MankalaRules : IRule
 
     public bool EndGame(IBoard b)
     {
-        return GetMoves(b,Player.P1).Count + GetMoves(b,Player.P2).Count == 0;
+        return GetMoves(b,Player.P1).Count == 0 || GetMoves(b,Player.P2).Count == 0;
     }
 
     public List<int> GetMoves(IBoard b, Player p)
