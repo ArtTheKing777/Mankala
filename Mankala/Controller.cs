@@ -73,6 +73,7 @@ public class Controller
     {
         List<int> m = _model.GetMoves(player);
         int move = DoMoveIO(player, m);
+        if (move == -1) return;
         Player p = _model.DoMove(player, move);
         if (player == p) _model.DoMove(player, DoMoveIO(player, _model.GetMoves(player))); //_model.DoMove returns the next player, so if that is the same player, they get another turn.
         else _currentplayer = p; //else switch the current player;

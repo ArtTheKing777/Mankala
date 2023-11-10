@@ -16,7 +16,9 @@ public class Model
         }
         else if (mode == "wari")
         {
-            
+            board = new WariBoard();
+            rules = new WariRules();
+
         }
         else if (mode == "newvariant")
         {

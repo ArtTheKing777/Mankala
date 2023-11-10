@@ -10,6 +10,7 @@ public class MankalaRules : IRule
         if (p1Count < p2Count) return 2;//player2Win
         return 0;//draw
     }
+    
 
     public bool EndGame(IBoard b)
     {
