@@ -45,5 +45,10 @@ public class Model
     {
         return rules.GetMoves(board, p);
     }
-    
+
+    public Player DoMove(Player p,int move)
+    {
+        return board.DoMove(p, move);
+    }
+
 }

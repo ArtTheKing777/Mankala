@@ -24,6 +24,12 @@ public abstract class APit
         Opposite = null;
         Player = p;
     }
+    
+    public void ConnectCross(APit? a)
+    {
+        Opposite = a;
+        if (a != null) { a.Opposite = this; }
+    }
 
     public void Connect(APit? a)
     {

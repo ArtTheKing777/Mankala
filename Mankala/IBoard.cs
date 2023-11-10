@@ -6,7 +6,7 @@ public interface IBoard
 {
     void MoveAmount(APit from, APit to, int amount);
 
-    void DoMove();
+    Player DoMove(Player p , int move);
 
     List<APit> GetHomePits(Player p);
 
