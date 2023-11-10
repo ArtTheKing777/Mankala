@@ -8,14 +8,14 @@ public class MankalaBoard : IBoard
         numPits = pits;
         List<APit> tempMankalaList = new List<APit>();
         APit? previous = null;
-        for (int i = 0; i < pits+1; i++)//+1 is actually +2(for homepits) -1(for indexes)
+        for (int i = 0; i < pits+2; i++)//+1 is actually +2(for homepits) -1(for indexes)
         {
             APit current;
-            if (i == pits / 2 - 1)
+            if (i == pits / 2)
             {
                 current = new HomePit(0, i, Player.P1);
             }
-            else if (i == pits)
+            else if (i == pits+1)
             {
                 current = new HomePit(0, i, Player.P2);
                 tempMankalaList[0].Connect(current);
@@ -73,13 +73,13 @@ public class MankalaBoard : IBoard
 
     public List<APit> GetPitsForType(Player p,PitType pt)
     {
-        List<APit> homePits = new List<APit>();
+        List<APit> pits = new List<APit>();
         
         foreach (APit pit in PitList)
         {
-            if (pit.Type == pt && pit.Player == p) { homePits.Add(pit); }
+            if (pit.Type == pt && pit.Player == p) { pits.Add(pit); }
         }
-        return homePits;
+        return pits;
     }
 
     public List<APit> GetHomePits(Player p) { return GetPitsForType(p, PitType.HomePit); }

@@ -92,7 +92,7 @@ public class Controller
          }
 
          string a = Console.ReadLine();
-         if (a == null)
+         if (a == "")
          {
              _view.WriteLine("please enter something");
              DoMove(player);
