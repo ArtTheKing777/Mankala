@@ -51,11 +51,11 @@ public class MankalaBoard : IBoard
         while (count > 0)
         {
             current = current.Next;
-            if (current.Type == PitType.HomePit && current.Player == p)
+            if (current.Type == PitType.HomePit && current.Player == p && count == 1)
             {
                 playerturnchange = p;
             }
-            else if (current.Stones == 0 && current.Player == p)
+            else if (current.Stones == 0 && current.Player == p && current.Type == PitType.Pit)
             {
                 MoveAmount(current.Opposite,homePit,current.Opposite.Stones);
                 MoveAmount(start,homePit , 1);
