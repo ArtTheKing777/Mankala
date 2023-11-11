@@ -73,7 +73,11 @@ public class Controller
     {
         List<int> m = _model.GetMoves(player);
         int move = DoMoveIO(player, m);
-        if (move == -1) return;
+        if (move == -1)
+        {
+            _currentplayer = _currentplayer == Player.P1?Player.P2:Player.P1;
+            return;
+        }
         _currentplayer = _model.DoMove(player, move);
     }
 

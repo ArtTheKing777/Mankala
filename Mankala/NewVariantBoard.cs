@@ -1,14 +1,14 @@
 ﻿namespace Mankala;
 
-public class MankalaBoard : IBoard
+public class NewVariantBoard : IBoard
 {
     private int numPits;
-    public MankalaBoard(int pits = 12,int amountInPits = 4)
+    public NewVariantBoard(int pits = 10,int amountInPits = 6)
     {
         numPits = pits;
         List<APit> tempMankalaList = new List<APit>();
         APit? previous = null;
-        for (int i = 0; i < pits+2; i++)//+1 is actually +2(for homepits) -1(for indexes)
+        for (int i = 0; i < pits+2; i++)//+2
         {
             APit current;
             if (i == pits / 2)

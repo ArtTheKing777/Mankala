@@ -22,7 +22,8 @@ public class Model
         }
         else if (mode == "newvariant")
         {
-            
+            board = new NewVariantBoard();
+            rules = new NewVariantRules();
         }
     }
 
