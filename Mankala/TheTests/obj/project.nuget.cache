@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "vtR3iO0dVZmsw64OJIr9d2pWPSRNYrqnykifY/zb8D5pVGp+Iv+Z2PKL2RVDsvO0slIsKT0VBCeivtd7BGGOpw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\arthu\\Downloads\\Mankala\\Mankala\\TheTests\\TheTests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\arthu\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\microsoft.netcore.platforms\\8.0.0-preview.7.23375.6\\microsoft.netcore.platforms.8.0.0-preview.7.23375.6.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\nunit.analyzers\\3.3.0\\nunit.analyzers.3.3.0.nupkg.sha512",
+    "C:\\Users\\arthu\\.nuget\\packages\\nunit3testadapter\\4.2.1\\nunit3testadapter.4.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}
