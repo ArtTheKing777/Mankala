@@ -6,6 +6,10 @@ public class Controller
     private View _view;
     private Model _model;
     
+    /// <summary>
+    /// constructor
+    /// </summary>
+    /// <param name="currentPlayer">the first player</param>
     public Controller(Player currentPlayer)
     {
         _currentPlayer = currentPlayer;
@@ -14,6 +18,9 @@ public class Controller
         StartProgramIO();
     }
 
+    /// <summary>
+    /// input/output function to start the program
+    /// </summary>
     private void StartProgramIO()
     {
         _view.WriteLine("welcome to this program where you can play mankala like games.");
@@ -25,6 +32,9 @@ public class Controller
         else {_view.WriteLine("try enter 1 or 2"); StartProgramIO();}
     }
     
+    /// <summary>
+    /// creates a new game, of type given by SelectGameTypeIO
+    /// </summary>
     private void MakeGame()
     {
         string a = SelectGameTypeIO();
@@ -32,6 +42,9 @@ public class Controller
         StartGameIO();
     }
 
+    /// <summary>
+    /// input/output function to start a game
+    /// </summary>
     private void StartGameIO()
     {
         _view.WriteLine("Press 1 to start game or press 2 to go to the game select");
@@ -41,7 +54,10 @@ public class Controller
         else if (a == "2") StartProgramIO();
         else {Console.WriteLine("try enter 1 or 2"); StartGameIO();}
     }
-
+    
+    /// <summary>
+    /// game loop
+    /// </summary>
     private void CurrentGameLoop()
     {
         DoMove(_currentPlayer);
@@ -66,7 +82,11 @@ public class Controller
         }
         
     }
-
+    
+    /// <summary>
+    /// asks for a move via DoMoveIO, and then does it on a board.
+    /// </summary>
+    /// <param name="player">player who will make the move</param>
     private void DoMove(Player player)
     {
         List<int> m = _model.GetMoves(player);
@@ -79,6 +99,13 @@ public class Controller
         _currentPlayer = _model.DoMove(player, move);
     }
 
+    /// <summary>
+    /// input/output function for DoMove, gets the moves from DoMove, and asks the user which one they want to play
+    /// then passes that back to DoMove
+    /// </summary>
+    /// <param name="player">player to make move for</param>
+    /// <param name="moves">list of move options</param>
+    /// <returns></returns>
     private int DoMoveIO(Player player, List<int> moves)
     {
         if (moves.Count == 0) return -1; //no moves
@@ -108,7 +135,11 @@ public class Controller
          
          return moves[j-1];
     }
-
+    
+    /// <summary>
+    /// input/output function to select a game type
+    /// </summary>
+    /// <returns>a game type to play, can be either mankala, wari, or NewVariant</returns>
     private string SelectGameTypeIO()
     {
         _view.WriteLine("select one of the game types by pressing the number before it.");
@@ -140,7 +171,10 @@ public class Controller
                 return SelectGameTypeIO();
         }
     }
-
+    
+    /// <summary>
+    /// quick helper function for compactness
+    /// </summary>
     private void WriteGameTypesIO()
     {
         _view.WriteLine("1. manakala");

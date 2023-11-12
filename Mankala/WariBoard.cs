@@ -3,8 +3,13 @@
 public class WariBoard : IBoard
 {
     private int numpits;
-    private HomePit p1HomePit = new HomePit(0, (-1), Player.P1);
+    private HomePit p1HomePit = new HomePit(0, (-1), Player.P1); //wari has its homepits not as part of the board circuit, so they are just kept as loose objects
     private HomePit P2HomePit = new HomePit(0, (-1), Player.P2);
+    /// <summary>
+    /// constructor
+    /// </summary>
+    /// <param name="pits">starting pits</param>
+    /// <param name="amountInPits">starting amount in pits</param>
     public WariBoard(int pits = 12, int amountInPits = 4)
     {
         numpits = pits;
@@ -34,12 +39,24 @@ public class WariBoard : IBoard
         PitList.Add(P2HomePit);
     }
     
+    /// <summary>
+    /// move an amount of pits from one pit to another
+    /// </summary>
+    /// <param name="from">pit to move from</param>
+    /// <param name="to">pit to move to</param>
+    /// <param name="amount">amount of stones to move</param>
     public void MoveAmount(APit from, APit to, int amount)
     {
         to.Stones += amount;
         from.Stones -= amount;
     }
 
+    /// <summary>
+    /// does a move on the board
+    /// </summary>
+    /// <param name="p">player to make move for</param>
+    /// <param name="move">move in question</param>
+    /// <returns>next player, usefull for extra turns</returns>
     public Player DoMove(Player p, int moveIndex)
     {
         APit homePit = GetHomePits(p)[0];
@@ -65,6 +82,12 @@ public class WariBoard : IBoard
         return playerturnchange;
     }
 
+    /// <summary>
+    /// helper function for get homepits/playerpits
+    /// </summary>
+    /// <param name="p"></param>
+    /// <param name="pt"></param>
+    /// <returns></returns>
     public List<APit> GetPitsForType(Player p, PitType pt)
     {
         List<APit> pits = new List<APit>();
@@ -75,8 +98,18 @@ public class WariBoard : IBoard
         return pits;
     }
 
+    /// <summary>
+    /// gets home pits of a given player
+    /// </summary>
+    /// <param name="p">player to get home pits from</param>
+    /// <returns>home pits of player p</returns>
     public List<APit> GetHomePits(Player p) { return GetPitsForType(p, PitType.HomePit);}
 
+    /// <summary>
+    /// get normal pits of a given player
+    /// </summary>
+    /// <param name="p">player to get pits from</param>
+    /// <returns>pits of player p</returns>
     public List<APit> GetPlayerPits(Player p) { return GetPitsForType(p, PitType.Pit);}
     
     /// <summary>

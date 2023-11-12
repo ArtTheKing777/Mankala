@@ -3,6 +3,12 @@
 public class NewVariantBoard : IBoard
 {
     private int numPits;
+    
+    /// <summary>
+    /// newvariant board constructor
+    /// </summary>
+    /// <param name="pits">starting pits</param>
+    /// <param name="amountInPits">starting amount of stones per pit</param>
     public NewVariantBoard(int pits = 10,int amountInPits = 6)
     {
         numPits = pits;
@@ -35,12 +41,24 @@ public class NewVariantBoard : IBoard
         PitList = tempMankalaList;
     }
 
+    /// <summary>
+    /// move an amount of pits from one pit to another
+    /// </summary>
+    /// <param name="from">pit to move from</param>
+    /// <param name="to">pit to move to</param>
+    /// <param name="amount">amount of stones to move</param>
     public void MoveAmount(APit from, APit to, int amount)
     {
         to.Stones += amount;
         from.Stones -= amount;
     }
 
+    /// <summary>
+    /// does a move on the board
+    /// </summary>
+    /// <param name="p">player to make move for</param>
+    /// <param name="move">move in question</param>
+    /// <returns>next player, usefull for extra turns</returns>
     public Player DoMove(Player p,int moveIndex)
     {
         APit homePit = GetHomePits(p)[0];
@@ -72,6 +90,12 @@ public class NewVariantBoard : IBoard
         return playerturnchange;
     }
 
+    /// <summary>
+    /// helper function for get homepits/playerpits
+    /// </summary>
+    /// <param name="p"></param>
+    /// <param name="pt"></param>
+    /// <returns></returns>
     public List<APit> GetPitsForType(Player p,PitType pt)
     {
         List<APit> pits = new List<APit>();
@@ -83,9 +107,22 @@ public class NewVariantBoard : IBoard
         return pits;
     }
 
+    /// <summary>
+    /// gets home pits of a given player
+    /// </summary>
+    /// <param name="p">player to get home pits from</param>
+    /// <returns>home pits of player p</returns>
     public List<APit> GetHomePits(Player p) { return GetPitsForType(p, PitType.HomePit); }
 
+    /// <summary>
+    /// get normal pits of a given player
+    /// </summary>
+    /// <param name="p">player to get pits from</param>
+    /// <returns>pits of player p</returns>
     public List<APit> GetPlayerPits(Player p){ return GetPitsForType(p, PitType.Pit); }
 
+    /// <summary>
+    /// pit list
+    /// </summary>
     public List<APit> PitList { get; set; }
 }
