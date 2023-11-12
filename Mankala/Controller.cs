@@ -2,13 +2,13 @@
 
 public class Controller
 {
-    private Player _currentplayer;
+    private Player _currentPlayer;
     private View _view;
     private Model _model;
     
-    public Controller(Player currentplayer)
+    public Controller(Player currentPlayer)
     {
-        _currentplayer = currentplayer;
+        _currentPlayer = currentPlayer;
         _view = new View();
         _model = new Model();
         StartProgramIO();
@@ -19,9 +19,8 @@ public class Controller
         _view.WriteLine("welcome to this program where you can play mankala like games.");
         _view.WriteLine("do you want to start or quit the program? press 1 for start and press 2 for quit");
         
-        string a = Console.ReadLine();
-        if(a==null) StartProgramIO();
-        else if(a == "1") MakeGame();
+        string a = Console.ReadLine() ?? string.Empty;
+        if(a == "1") MakeGame();
         else if(a == "2"){}//stop program
         else {_view.WriteLine("try enter 1 or 2"); StartProgramIO();}
     }
@@ -37,16 +36,15 @@ public class Controller
     {
         _view.WriteLine("Press 1 to start game or press 2 to go to the game select");
         
-        string a = Console.ReadLine();
-        if (a == null){_view.WriteLine("not an option, enter 1 or 2");StartGameIO();}
-        else if (a == "1") CurrentGameLoop(); 
+        string a = Console.ReadLine() ?? string.Empty;
+        if (a == "1") CurrentGameLoop(); 
         else if (a == "2") StartProgramIO();
         else {Console.WriteLine("try enter 1 or 2"); StartGameIO();}
     }
 
     private void CurrentGameLoop()
     {
-        DoMove(_currentplayer);
+        DoMove(_currentPlayer);
         if(!_model.EndGame()){CurrentGameLoop();}
         else
         {
@@ -75,10 +73,10 @@ public class Controller
         int move = DoMoveIO(player, m);
         if (move == -1)
         {
-            _currentplayer = _currentplayer == Player.P1?Player.P2:Player.P1;
+            _currentPlayer = _currentPlayer == Player.P1?Player.P2:Player.P1;
             return;
         }
-        _currentplayer = _model.DoMove(player, move);
+        _currentPlayer = _model.DoMove(player, move);
     }
 
     private int DoMoveIO(Player player, List<int> moves)
@@ -94,21 +92,20 @@ public class Controller
              _view.WriteLine((i+1) + "." + "move pit " + (moves[i]+1) );
          }
 
-         string a = Console.ReadLine();
+         string a = Console.ReadLine() ?? string.Empty;
          if (a == "")
          {
              _view.WriteLine("please enter something");
              DoMove(player);
          }
         
-         if (Convert.ToInt32(a) == null) //check if int
+         int j;
+         if (int.TryParse(a,out j)) //check if int
          {
              _view.WriteLine("please enter a number");
              DoMove(player);
          }
-
-         int j = Convert.ToInt32(a);
-
+         
          return moves[j-1];
     }
 
@@ -118,8 +115,8 @@ public class Controller
         _view.WriteLine("GameTypes:");
         WriteGameTypesIO();
 
-        string a = Console.ReadLine();
-        if (a == null)
+        string a = Console.ReadLine() ?? string.Empty;
+        if (a == "")
         {
             _view.WriteLine("please enter something");
             return SelectGameTypeIO();

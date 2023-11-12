@@ -46,7 +46,7 @@ public class WariBoard : IBoard
         APit start = PitList[moveIndex];
         APit current = PitList[moveIndex];
         int count = start.Stones;
-        Player playerturnchange = p == Player.P1 ? Player.P1 : Player.P2;
+        Player playerturnchange = p == Player.P1 ? Player.P2 : Player.P1;
         while (count > 0)
         {
             current = current.Next;
